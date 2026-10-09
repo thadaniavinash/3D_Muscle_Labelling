@@ -21,10 +21,10 @@ then open http://127.0.0.1:8010/. Author mode saves labels to `data/muscle-label
 
 ## Credits
 
-- 3D model: "Male Full Body Ecorche" by [Diego Luján García](https://sketchfab.com/diegoluga) on Sketchfab, licensed [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+- 3D model: "Male Full Body Ecorche" by [Diego Luján García](https://sketchfab.com/diegoluga) on Sketchfab, licensed under [Creative Commons Attribution (CC BY)](https://creativecommons.org/licenses/by/4.0/).
 - 3D rendering: [three.js](https://threejs.org/) (MIT licence), vendored in `vendor/three/`.
 - Developed with the assistance of AI coding tools.
 
 ## Licence
 
-Copyright is retained by the project owner unless a licence is added. The 3D model remains under its own CC BY 4.0 licence.
+Copyright is retained by the project owner unless a licence is added. The 3D model remains under its own Creative Commons Attribution (CC BY) licence.

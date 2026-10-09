@@ -12,4 +12,4 @@ arrow anchoring can still be tested.
 
 Attribution for the intended model:
 
-Male Full Body Ecorche by Diego Lujan Garcia, licensed CC BY 4.0.
+Male Full Body Ecorche by Diego Lujan Garcia, licensed under Creative Commons Attribution (CC BY).
