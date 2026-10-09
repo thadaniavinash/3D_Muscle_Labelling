@@ -1552,3 +1552,39 @@ body:not([data-mode="author"]) .label-list small {
     grid-template-columns: 1fr;
   }
 }
+
+.credit a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.credit a:hover { color: var(--accent, currentColor); }
+.credit { text-shadow: 0 0 4px var(--surface, #fff), 0 0 8px var(--surface, #fff); }
+
+/* ---------- Phones: compact top bar, side panel becomes a bottom sheet ---------- */
+@media (max-width: 760px) {
+  .topbar {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 12px;
+    min-height: 0;
+    padding: 8px 12px;
+  }
+  .brand { flex: 1 1 auto; min-width: 0; }
+  .brand-copy span { display: none; }
+  .mode-switch { order: 3; flex: 1 1 100%; }
+  .toolbar-actions { order: 2; flex-wrap: nowrap; }
+  .quiz-progress { top: 104px; }
+  .label-sidebar, .expand-sidebar { top: 116px; }
+  .student-panel,
+  .student-panel.study-panel {
+    top: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 44%;
+    max-height: 360px;
+    border-left: 0;
+    border-top: 1px solid var(--border);
+    border-radius: 16px 16px 0 0;
+  }
+  .credit { bottom: calc(44% + 6px); font-size: 0.7rem; }
+}

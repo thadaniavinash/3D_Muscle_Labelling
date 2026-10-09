@@ -1,0 +1,7 @@
+# Dependencies, caches, logs and local tool settings
+node_modules/
+.npm-cache/
+*.log
+.claude/
+.DS_Store
+Thumbs.db

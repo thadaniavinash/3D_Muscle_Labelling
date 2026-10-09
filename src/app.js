@@ -6,6 +6,7 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 // is entered via the lock button in the top bar. Change it to whatever you like.
 const INSTRUCTOR_PASSCODE = "anatomy";
 let authorUnlocked = false;
+let staticMode = false; // true on static hosting: labels are read-only, no instructor tools
 
 const canvas = document.querySelector("#scene");
 const statusEl = document.querySelector("#model-status");
@@ -263,6 +264,11 @@ async function initialize() {
   authorModeButton.hidden = !authorUnlocked;
   newLabelButton.hidden = true;
   questions = await loadQuestions();
+  if (staticMode) {
+    // No server to save to, so hide the instructor lock and Author mode.
+    instructorLock.hidden = true;
+    authorModeButton.hidden = true;
+  }
   quizLength = clamp(10, 1, Math.max(1, questions.length));
   activeQuestion = questions[0] ? structuredClone(questions[0]) : createQuestion();
 
@@ -271,6 +277,8 @@ async function initialize() {
   renderEditModal();
   renderPlacementBanner();
   setMode("study");
+  // On phones the muscle menu would cover the whole model, so start it collapsed.
+  if (window.matchMedia("(max-width: 760px)").matches) setSidebarCollapsed(true);
 }
 
 async function loadModel() {
@@ -1640,8 +1648,12 @@ function createNewLabel() {
 }
 
 async function loadQuestions() {
+  // Local server (author mode): labels come from /api/labels and can be saved.
+  // On any other host (for example GitHub Pages) skip the probe and read the published file.
+  const onLocalServer = ["localhost", "127.0.0.1", "[::1]"].includes(window.location.hostname);
   try {
-    const response = await fetch("/api/labels", { cache: "no-store" });
+    if (!onLocalServer) throw new Error("Static hosting.");
+    const response = await fetch("./api/labels", { cache: "no-store" });
     if (!response.ok) throw new Error(`Server returned ${response.status}.`);
     const labels = await response.json();
     const isLegacyShape = Array.isArray(labels) && labels.some((item) => !item.left && !item.right);
@@ -1652,20 +1664,30 @@ async function loadQuestions() {
     }
     return normalized;
   } catch {
+    // Static hosting (for example GitHub Pages): read the published labels file, read-only.
     try {
-      const fallback = JSON.parse(localStorage.getItem("muscle-label-questions") || "[]");
-      saveStatus = "Local JSON unavailable; using browser backup.";
-      return Array.isArray(fallback) ? fallback.map(normalizeQuestionRecord) : [];
+      const response = await fetch("./data/muscle-labels.json", { cache: "no-cache" });
+      if (!response.ok) throw new Error(`Labels file returned ${response.status}.`);
+      const labels = await response.json();
+      staticMode = true;
+      saveStatus = "Read-only: loaded from the published labels file.";
+      return Array.isArray(labels) ? labels.map(normalizeQuestionRecord) : [];
     } catch {
-      saveStatus = "No saved labels found.";
-      return [];
+      try {
+        const fallback = JSON.parse(localStorage.getItem("muscle-label-questions") || "[]");
+        saveStatus = "Local JSON unavailable; using browser backup.";
+        return Array.isArray(fallback) ? fallback.map(normalizeQuestionRecord) : [];
+      } catch {
+        saveStatus = "No saved labels found.";
+        return [];
+      }
     }
   }
 }
 
 async function persistMigratedQuestions(normalized) {
   try {
-    const response = await fetch("/api/labels", {
+    const response = await fetch("./api/labels", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(normalized),
@@ -1688,7 +1710,7 @@ async function saveActiveQuestion() {
   localStorage.setItem("muscle-label-questions", JSON.stringify(questions));
 
   try {
-    const response = await fetch("/api/labels", {
+    const response = await fetch("./api/labels", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(questions),
@@ -1784,7 +1806,7 @@ async function deleteLabel(questionId) {
   localStorage.setItem("muscle-label-questions", JSON.stringify(questions));
 
   try {
-    const response = await fetch("/api/labels", {
+    const response = await fetch("./api/labels", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(questions),
