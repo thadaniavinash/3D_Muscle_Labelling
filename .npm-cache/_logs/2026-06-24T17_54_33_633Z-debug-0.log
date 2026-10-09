@@ -1,0 +1,80 @@
+0 verbose cli C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js
+1 info using npm@9.5.1
+2 info using node@v18.16.0
+3 timing npm:load:whichnode Completed in 1ms
+4 timing config:load:defaults Completed in 2ms
+5 timing config:load:file:C:\Program Files\nodejs\node_modules\npm\npmrc Completed in 2ms
+6 timing config:load:builtin Completed in 2ms
+7 timing config:load:cli Completed in 2ms
+8 timing config:load:env Completed in 0ms
+9 timing config:load:file:C:\Users\thada\Documents\3D_Muscle_Labelling\.npmrc Completed in 0ms
+10 timing config:load:project Completed in 2ms
+11 timing config:load:file:C:\Users\thada\.npmrc Completed in 0ms
+12 timing config:load:user Completed in 0ms
+13 timing config:load:file:C:\Users\thada\AppData\Roaming\npm\etc\npmrc Completed in 1ms
+14 timing config:load:global Completed in 1ms
+15 timing config:load:setEnvs Completed in 1ms
+16 timing config:load Completed in 10ms
+17 timing npm:load:configload Completed in 10ms
+18 timing npm:load:mkdirpcache Completed in 0ms
+19 timing npm:load:mkdirplogs Completed in 1ms
+20 verbose title npm install three@0.165.0
+21 verbose argv "install" "three@0.165.0" "--cache" ".\\.npm-cache"
+22 timing npm:load:setTitle Completed in 2ms
+23 timing config:load:flatten Completed in 3ms
+24 timing npm:load:display Completed in 4ms
+25 verbose logfile logs-max:10 dir:C:\Users\thada\Documents\3D_Muscle_Labelling\.npm-cache\_logs\2026-06-24T17_54_33_633Z-
+26 verbose logfile C:\Users\thada\Documents\3D_Muscle_Labelling\.npm-cache\_logs\2026-06-24T17_54_33_633Z-debug-0.log
+27 timing npm:load:logFile Completed in 5ms
+28 timing npm:load:timers Completed in 0ms
+29 timing npm:load:configScope Completed in 0ms
+30 timing npm:load Completed in 23ms
+31 timing arborist:ctor Completed in 0ms
+32 silly logfile done cleaning log files
+33 timing arborist:ctor Completed in 0ms
+34 timing idealTree:init Completed in 8ms
+35 timing idealTree:userRequests Completed in 2ms
+36 silly idealTree buildDeps
+37 silly fetch manifest three@0.165.0
+38 http fetch GET 200 https://registry.npmjs.org/three 73ms (cache miss)
+39 silly placeDep ROOT three@0.165.0 OK for: 3d_muscle_labelling@1.0.0 want: 0.165.0
+40 timing idealTree:#root Completed in 80ms
+41 timing idealTree:node_modules/three Completed in 0ms
+42 timing idealTree:buildDeps Completed in 81ms
+43 timing idealTree:fixDepFlags Completed in 0ms
+44 timing idealTree Completed in 92ms
+45 timing reify:loadTrees Completed in 93ms
+46 timing reify:diffTrees Completed in 1ms
+47 silly reify moves {}
+48 timing reify:retireShallow Completed in 1ms
+49 timing reify:createSparse Completed in 2ms
+50 timing reify:loadBundles Completed in 0ms
+51 silly audit bulk request { three: [ '0.165.0' ] }
+52 silly tarball no local data for three@https://registry.npmjs.org/three/-/three-0.165.0.tgz. Extracting by manifest.
+53 http fetch GET 200 https://registry.npmjs.org/npm 198ms (cache miss)
+54 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 91ms
+55 timing auditReport:getReport Completed in 92ms
+56 silly audit report {}
+57 timing auditReport:init Completed in 0ms
+58 timing reify:audit Completed in 93ms
+59 http fetch GET 200 https://registry.npmjs.org/three/-/three-0.165.0.tgz 1896ms (cache miss)
+60 timing reifyNode:node_modules/three Completed in 1901ms
+61 timing reify:unpack Completed in 1901ms
+62 timing reify:unretire Completed in 0ms
+63 timing build:queue Completed in 0ms
+64 timing build:deps Completed in 0ms
+65 timing build Completed in 1ms
+66 timing reify:build Completed in 1ms
+67 timing reify:trash Completed in 0ms
+68 timing reify:save Completed in 9ms
+69 timing reify Completed in 2052ms
+70 silly ADD node_modules/three
+71 timing command:install Completed in 2056ms
+72 notice
+72 notice New major version of npm available! 9.5.1 -> 11.17.0
+72 notice Changelog: <https://github.com/npm/cli/releases/tag/v11.17.0>
+72 notice Run `npm install -g npm@11.17.0` to update!
+72 notice
+73 verbose exit 0
+74 timing npm Completed in 2102ms
+75 info ok
